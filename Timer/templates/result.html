@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Breath Holding Test Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background-color: #c9e4ca;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .header h1 {
+            color: #66b3ff;
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .content p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .result {
+            background-color: #ffffcc;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #008000;
+            margin-right: 20px;
+        }
+
+        a:hover {
+            color: #00b300;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Breath Holding Test Result</h1>
+        </div>
+        <div class="content">
+            <div class="result">
+                <p>Hello {{ username }},</p>
+                <p>Your lung capacity is: {{ breath_holding_time }} seconds</p>
+                <p>Your level: {{ result }}</p>
+                <p>{{ note }}</p>
+            </div>
+            <p>
+                <a href="{{ url_for('index') }}">Back to Home</a>
+                <a href="{{ url_for('leaderboard') }}">View Leaderboard</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+

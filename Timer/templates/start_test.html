@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Breath Holding Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #FFF2D7;
+            border: 1px solid #000000;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+    background-color: #D3C5E5;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #000000;
+    border-radius: 10px 10px 0 0;
+}
+
+.header h1 {
+    color: #735DA5;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+        .content {
+            padding: 20px;
+        }
+
+        .content p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        #timer {
+            font-size: 36px;
+            font-weight: bold;
+            color: #66b3ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Breath Holding Test</h1>
+        </div>
+        <div class="content">
+            <p>Hello {{ username }},</p>
+            <p id="timer">5</p>
+            <p id="instruction" style="display: none;">Now hold your breath. If you can't hold your breath, press Submit.</p>
+            <p id="timeElapsed" style="display: none;">Time elapsed: <span id="time">0</span> seconds</p>
+            <form id="myForm" action="{{ url_for('result', username=username) }}" method="post" style="display: none;">
+                <input type="hidden" id="timeElapsedValue" name="timeElapsed" value="0">
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+    <script>
+        var time = 5;
+        var timer = setInterval(function() {
+            time--;
+            document.getElementById("timer").innerHTML = time;
+            if (time == 0) {
+                clearInterval(timer);
+                document.getElementById("timer").style.display = "none";
+                document.getElementById("instruction").style.display = "block";
+                document.getElementById("timeElapsed").style.display = "block";
+                document.getElementById("myForm").style.display = "block";
+                startBreathHoldingTest();
+            }
+        }, 1000);
+
+        function startBreathHoldingTest() {
+            var timeElapsed = 0;
+            var breathHoldingTimer = setInterval(function() {
+                timeElapsed++;
+                document.getElementById("time").innerHTML = timeElapsed;
+                document.getElementById("timeElapsedValue").value = timeElapsed;
+            }, 1000);
+
+            document.getElementById("myForm").addEventListener("submit", function() {
+                clearInterval(breathHoldingTimer);
+            });
+        }
+    </script>
+</body>
+</html>
